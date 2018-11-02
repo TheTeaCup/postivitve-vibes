@@ -1,0 +1,32 @@
+<%- include('./blocks/header.ejs', {bot,user}) %>
+
+  <style>
+  body{background-color: <%= co %>;}
+  p{color: orange; font-size: 15pt;}
+  h4{color: red; font-size: 30pt;}
+  p1{color: #7289DA; font-size: 20pt;}
+  p2{color: orange; font-size: 25pt;}
+  p3{color: #7289DA; ont-size: 15pt;}
+  h2{color: #7289DA; font-size: 15pt;}
+  h3{color: #7289DA; font-size: 20pt;}
+  i{color: #7289DA; font-size: 15pt;}
+  g{color:  #7289DA; font-size: 15pt;}
+  </style>
+  <center>
+  <div>
+  <div class="container py-5">
+  <div class="row">
+  <div class="col-md-6">
+  <img class="img-fluid d-block rounded-circle mx-auto" src="<%= ava %>">
+  <p3>
+   <%= use.username %>#<%= use.discriminator %>
+  </p3>
+  </div>
+  <div class="col-md-6">
+  <h2 class="text-primary pt-3">
+   <%= status %><img style="width: 6%; margin-left: 16px;" src="<%= pic %>" data-toggle="tooltip" data-placement="top" title="<%= status %>">
+   </h2>
+  <div>
+ <g>
+  <%= d %></g>
+  </div></div></div></div></center><center></center></center></div>
