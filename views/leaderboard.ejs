@@ -1,0 +1,82 @@
+<%- include('./blocks/header.ejs', {bot,user}) %>
+  <style>
+    body
+{
+	   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+	   margin: 2em;
+	 
+	}
+.user-name{
+    color: black;
+    position: relative;
+    left: -150px;
+    top: 20px;
+}
+
+.user-balance{
+    color: black;
+    position: relative;
+    left: -150px;
+    top: 50px;
+}
+
+.user-avatar{
+    border-radius: 50%;
+    position: relative;
+    left: 150px;
+    top: -50px;
+}
+
+.user-object{
+    border-radius: 25px;
+    background-image: url("http://www.destinationlangues.com/site/wp-content/themes/hipster-new/assets/images/background/light/grilled.png");
+    background-repeat: repeat;
+    opacity: 0.9;
+    width: 500px;
+    margin: 50px;
+}
+
+.user-object:hover{
+    opacity: 1;
+    transition: ease 0.25s;
+}
+
+.note{
+    font-size: 10pt;
+    position: relative;
+    top: -10px;
+}
+
+#guild-icon{
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+#guild-name{
+    color: #00CC99;
+    font-size: 50pt;
+}
+
+#users-count{
+    color: grey;
+    font-size: 17.5pt;
+}
+  </style>
+
+    <div id="guild-info" align="center">
+        <h5 id="guild-name">Leaderboard: Positive Vibes </h5>
+        <p id="users-count">Showing the top 15 members</p>
+        <img id="guild-icon" src="https://cdn.discordapp.com/icons/372145652798324738/ac5e19203fbbc067e55d1d811a91afa0.webp">
+    </div>
+    <div id="leaders" align="center">
+       <%  for  (var i in resp)  { %>
+        <header class="user-object" align="center">
+            <p class="user-name"><%= bot.users.get(resp[i].ID.split('_')[2]).tag %>:</p>
+            <p class="user-rank">Messages: <%= resp[i].data %></p>
+         <!-- <p class="user-rank">Credits: 
+            </p> -->
+            <img class="user-avatar" style="opacity: 1;" src="<%= bot.users.get(resp[i].ID.split('_')[2]).avatarURL.split('?')[0] %>">
+            <p class="note">(ID: <%= bot.users.get(resp[i].ID.split('_')[2]).id %>) </p>
+        </header>
+       <% } %>
+    </div>
