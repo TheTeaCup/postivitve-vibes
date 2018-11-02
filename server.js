@@ -196,7 +196,16 @@ app.get("/profile/:guildID", async(req,res) => {
    res.render(process.cwd() + '/views/profile.ejs', {bot:client,user: req.isAuthenticated() ? req.user : null,co,d,p,use,ava,status,pic})
 })
 });
-
+app.get("/leaderboard", async(req,res) => {
+     let user =  req.isAuthenticated() ? req.user : null
+       db.startsWith(`guildMessages_372145652798324738`,{ sort: '.data'  }).then(async resp => {
+    let guild = client.guilds.get("372145652798324738")
+    resp.length = 15
+         let  bal;
+         res.render(process.cwd() + '/views/leaderboard.ejs', {bot:client,user: req.isAuthenticated() ? req.user : null,resp,out:bal,db})
+        
+       });
+     });
 
 client.login("_TOKEN_");
 const discord = require("./discord.js")(client)
