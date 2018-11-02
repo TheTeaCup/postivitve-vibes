@@ -4,4 +4,4 @@
 - Website https://positivevibes.glitch.me/
 
 ## **Work in Progress!**
-- I will not me posting everything 
+- I will not be posting everything 
