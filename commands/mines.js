@@ -1,7 +1,32 @@
-const Discord = require('discord.js');
 const db = require('quick.db');
+const Discord = require("discord.js");
+const { get } = require("snekfetch");
+const ms = require('parse-ms');
+//let devs = ["338192747754160138","364007557045551106","297096161842429963"]
+module.exports.run = async (client, message, args) => {
+  
+     let cooldown = 900000;
+    
 
-module.exports.run = async (Koala, message, args) => {
+    let lastDaily = await db.fetch(`lastDailyss_${message.author.id}`);
+  
+    try {
+     
+
+
+  if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+      
+        let timeObj = ms(cooldown - (Date.now() - lastDaily))
+
+const lembed = new Discord.RichEmbed()
+.setAuthor("PS ▸ 🚀", client.user.avatarURL)
+ .setColor(0x36393e)
+ .setFooter(`Uh-oh.. not again! | 🚀 🢒 PS`, message.author.avatarURL)
+ .setDescription("**!** |  ⬪ Whoopsies! I have searched far and wide, but I have received an error..")
+ 
+ .addField("🢒 Error Detected | ❗", "HEY! You will receive your daily income in | " + `**${timeObj.hours} hours, ${timeObj.minutes} minutes**`);
+              return message.channel.send(lembed)
+    } else {
      
 
   let mined = ['gold','fools_gold','diamonds','silver','quartz','lapis','ruby', 'iron', 'emerald', 'sapphire'];
@@ -27,6 +52,7 @@ amount = parseInt(amount)
    .setColor("00FF00")
    message.channel.send(yes)
     db.add(`userBalance_${user.id}`, amount * 1)
+         db.set(`lastDailyss_${message.author.id}`, Date.now());
   } else {
     let no = new Discord.RichEmbed()
     .setTitle("You were wrong :(")
@@ -34,5 +60,10 @@ amount = parseInt(amount)
     .setColor("FF0000")
   message.channel.send(no)
     }
+    }
+       } catch(err) {
+    }
 }
+    
+
 
